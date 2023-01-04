@@ -33,6 +33,7 @@ class DetailViewController: UIViewController {
             selectedImage.image = UIImage(named: imageToLoad)
         }
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
         
     }
     
@@ -44,6 +45,21 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
+    }
+    
+    @objc func shareTapped(){
+        guard let image = selectedImage.image?.pngData()
+        else{
+            print("No image Found")
+            return
+        }
+                
+                
+        let vc = UIActivityViewController(activityItems: [image, selectedImage ?? "No Image Found"], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        
+        present(vc, animated: true)
+        
     }
     /*
     // MARK: - Navigation

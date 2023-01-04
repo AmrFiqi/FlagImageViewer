@@ -12,7 +12,8 @@ import UIKit
 
 class ViewController: UITableViewController {
     var flags = [String]()
-
+   
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class ViewController: UITableViewController {
         
            }
        }
+        
         print(flags)
         
     }
@@ -37,6 +39,14 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Country", for: indexPath)
         cell.textLabel?.text =  flags[indexPath.row]
+        cell.imageView?.image = UIImage(named: flags[indexPath.row])
+        
+        cell.backgroundColor = UIColor.init(white: 0.85, alpha: 1)
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 0.2
+        cell.layer.cornerRadius = 2
+        cell.clipsToBounds = true
+        
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -47,6 +57,7 @@ class ViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+   
     
 }
 
