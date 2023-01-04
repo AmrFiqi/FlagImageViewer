@@ -22,6 +22,7 @@ class ViewController: UITableViewController {
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
         title = "Countries"
+        
         navigationController?.navigationBar.prefersLargeTitles = true
        for item in items {
            if item.hasSuffix("png"){
@@ -29,9 +30,7 @@ class ViewController: UITableViewController {
         
            }
        }
-        
-        print(flags)
-        
+
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return flags.count
